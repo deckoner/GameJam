@@ -2,6 +2,7 @@
   "dependencies": {
     "com.unity.collab-proxy": "2.6.0",
     "com.unity.feature.development": "1.0.1",
+    "com.unity.postprocessing": "3.4.0",
     "com.unity.render-pipelines.universal": "14.0.11",
     "com.unity.shadergraph": "14.0.11",
     "com.unity.textmeshpro": "3.0.6",
