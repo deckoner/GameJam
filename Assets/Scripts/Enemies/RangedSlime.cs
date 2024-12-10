@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BasicSlime : MonoBehaviour, IEnemy
+public class RangedSlime : MonoBehaviour, IEnemy
 {
     #region Fields
-    // Campos públicos para salud, rango de visión y velocidades de movimiento
     public int Health { get; set; } = 1; // La salud del slime
     public int sightRange = 20; // Rango de visión predeterminado (en unidades)
     public int sightAngle = 45; // Ángulo de visión predeterminado (en grados)
@@ -12,17 +11,23 @@ public class BasicSlime : MonoBehaviour, IEnemy
     public float approachSpeed = 2f; // Velocidad al acercarse al jugador
     public float playerTrackingRange = 5f; // Rango en el que el slime dejará de seguir al jugador
 
-    // Campos privados para referencias a otros objetos y lógica de movimiento
+    // Rango de disparo y tiempo de recarga
+    public float attackRange = 10f; // Rango de disparo del slime
+    public float shootCooldown = 2f; // Tiempo en segundos entre disparos
+    private float lastShootTime = 0f; // Registro de la última vez que disparó
+
+    // Referencias a los objetos de jugador y proyectiles
     private Transform player; // Referencia al Transform del jugador
     private NavMeshAgent agent; // NavMeshAgent para el movimiento
     private Vector3 lastKnownPlayerPosition; // Guardar la última posición conocida del jugador
     private bool isPlayerInSight = false; // Controla si el jugador está a la vista
+
+    // Prefab del proyectil
+    public GameObject projectilePrefab; // Prefab del proyectil (esfera)
+    public float projectileSpeed = 10f; // Velocidad del proyectil
     #endregion
 
     #region Unity Methods
-    /// <summary>
-    /// Inicializa las referencias y configura el NavMeshAgent para el movimiento del slime.
-    /// </summary>
     void Start()
     {
         // Encuentra el objeto jugador en la escena (suponiendo que tiene la etiqueta "Player")
@@ -49,14 +54,16 @@ public class BasicSlime : MonoBehaviour, IEnemy
         SetNewRandomWanderDestination();
     }
 
-    /// <summary>
-    /// Verifica si el jugador está a la vista y maneja el movimiento en consecuencia.
-    /// También verifica la entrada de teclas (Q) para activar la reducción de salud para todos los enemigos.
-    /// </summary>
     void Update()
     {
         // Reacciona a la posición del jugador
         ReactToPlayer();
+
+        // Intenta disparar al jugador si está dentro del rango
+        if (isPlayerInSight && Time.time - lastShootTime > shootCooldown)
+        {
+            ShootAtPlayer();
+        }
 
         // Verifica si la tecla "Q" es presionada para activar la reducción de salud de todos los enemigos
         if (Input.GetKeyDown(KeyCode.Q))
@@ -65,19 +72,13 @@ public class BasicSlime : MonoBehaviour, IEnemy
         }
     }
 
-    /// <summary>
-    /// Maneja el comportamiento del slime en función de la posición del jugador.
-    /// Si el jugador está a la vista, el slime se acerca al jugador. 
-    /// Si no, deambulará aleatoriamente.
-    /// </summary>
     public void ReactToPlayer()
     {
-        // Asegura que 'player' esté correctamente asignado
         if (player != null)
         {
             if (IsPlayerInSight(player.position))
             {
-                // El jugador está a la vista, el slime comienza a acercarse
+                // El jugador está a la vista, el slime comienza a acercarse o disparar
                 if (!isPlayerInSight)
                 {
                     isPlayerInSight = true;
@@ -108,48 +109,39 @@ public class BasicSlime : MonoBehaviour, IEnemy
         }
     }
 
-    /// <summary>
-    /// Hace que el slime se acerque a la posición del objetivo (última posición conocida del jugador).
-    /// </summary>
-    /// <param name="targetPosition">La posición del objetivo hacia donde se moverá el slime.</param>
     private void ApproachPlayer(Vector3 targetPosition)
     {
-        // Establece la destinación del NavMeshAgent hacia la posición del objetivo
-        agent.SetDestination(targetPosition);
+        // Calculate the direction from the slime to the player
+        Vector3 directionToPlayer = targetPosition - transform.position;
 
-        // Rota el slime para mirar hacia la posición objetivo (ignorando el eje vertical)
-        Vector3 directionToTarget = new Vector3(targetPosition.x - transform.position.x, 0, targetPosition.z - transform.position.z);
-        if (directionToTarget.magnitude > 0.1f) // Evita rotaciones innecesarias
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, agent.angularSpeed * Time.deltaTime);
-        }
+        // Normalize the direction to maintain the 5f distance
+        directionToPlayer.y = 0; // We don't want the slime to move vertically
+        directionToPlayer.Normalize();
+
+        // Set the position to be 5 units away from the player
+        Vector3 targetPositionAdjusted = targetPosition - directionToPlayer * 5f;
+
+        // Establece la destinación del NavMeshAgent hacia la nueva posición ajustada
+        agent.SetDestination(targetPositionAdjusted);
+
+        // Rotate the slime to look at the player
+        Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, agent.angularSpeed * Time.deltaTime);
     }
 
-    /// <summary>
-    /// Hace que el slime deambule aleatoriamente por el mapa.
-    /// Si el slime no se está moviendo hacia un destino, encontrará un nuevo destino aleatorio.
-    /// </summary>
     public void Wander()
     {
-        // Si el agente no está ya yendo hacia un destino, establece un nuevo destino de deambulación
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             SetNewRandomWanderDestination();
         }
     }
 
-    /// <summary>
-    /// Establece un nuevo destino aleatorio dentro de un rango especificado.
-    /// La posición del objetivo se elige aleatoriamente alrededor de la posición actual del slime.
-    /// </summary>
     private void SetNewRandomWanderDestination()
     {
-        // Genera una posición aleatoria en un radio más grande alrededor del slime
         Vector3 randomDirection = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)); // Rango aumentado
         Vector3 newWanderTarget = transform.position + randomDirection;
 
-        // Asegura que el nuevo objetivo esté sobre el NavMesh
         NavMeshHit hit;
         if (NavMesh.SamplePosition(newWanderTarget, out hit, 2f, NavMesh.AllAreas))
         {
@@ -157,28 +149,18 @@ public class BasicSlime : MonoBehaviour, IEnemy
         }
         else
         {
-            // Si no se puede encontrar un punto válido, intenta de nuevo
             SetNewRandomWanderDestination();
         }
     }
 
-    /// <summary>
-    /// Verifica si el jugador está dentro del rango de visión y el campo de visión del slime.
-    /// </summary>
-    /// <param name="playerPosition">La posición del jugador.</param>
-    /// <returns>True si el jugador está a la vista, false si no.</returns>
     public bool IsPlayerInSight(Vector3 playerPosition)
     {
-        // Calcula la dirección desde el enemigo hacia el jugador
         Vector3 directionToPlayer = playerPosition - transform.position;
 
-        // Verifica si el jugador está dentro del rango de visión
         if (directionToPlayer.magnitude < sightRange)
         {
-            // Calcula el ángulo entre la dirección hacia el jugador y la dirección hacia el frente del slime
             float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
-            // Si el ángulo está dentro del campo de visión (por ejemplo, 45 grados), el jugador está a la vista
             if (angleToPlayer < sightAngle)
             {
                 return true;
@@ -188,11 +170,30 @@ public class BasicSlime : MonoBehaviour, IEnemy
         return false;
     }
 
-    /// <summary>
-    /// Reduce la salud del slime por la cantidad de daño especificada.
-    /// Si la salud llega a 0, el slime es derrotado y destruido.
-    /// </summary>
-    /// <param name="damage">La cantidad de daño a reducir de la salud.</param>
+    private void ShootAtPlayer()
+    {
+        // Verifica que el proyectil esté disponible
+        if (projectilePrefab != null)
+        {
+            // Crea el proyectil en la posición del slime y lo orienta hacia el jugador
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
+
+            // Aplica velocidad al proyectil para que se mueva hacia el jugador
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = directionToPlayer * projectileSpeed;
+            }
+
+            lastShootTime = Time.time; // Actualiza el tiempo de la última vez que disparó
+        }
+        else
+        {
+            Debug.LogWarning("¡No se ha asignado el prefab del proyectil!");
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         Health -= damage;
@@ -200,40 +201,26 @@ public class BasicSlime : MonoBehaviour, IEnemy
 
         if (Health <= 0)
         {
-            Debug.Log("DEFEATADO");
+            Debug.Log("DEFEATED");
             Destroy(gameObject); // Destruye el slime cuando su salud llega a 0
         }
     }
 
-    /// <summary>
-    /// Función de acción para realizar alguna acción (por ejemplo, atacar o animación de reposo).
-    /// </summary>
     public void PerformAction()
     {
         Debug.Log("¡Iniciando acción!");
         Attack();
     }
 
-    /// <summary>
-    /// Función de ataque del slime.
-    /// </summary>
     public void Attack()
     {
         Debug.Log("¡El slime ataca!");
     }
-    #endregion
 
-    #region Debugging Methods
-    /// <summary>
-    /// Reduce la salud de todos los enemigos con la etiqueta "Enemy" en 1 cuando se presiona la tecla "Q".
-    /// Este método solo está disponible en el Editor de Unity.
-    /// </summary>
     private void MakeAllEnemiesLoseHealth()
     {
-        // Encuentra todos los objetos con la etiqueta "Enemy"
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        // Itera a través de todos los enemigos y reduce su salud en 1
         foreach (GameObject enemy in enemies)
         {
             IEnemy enemyScript = enemy.GetComponent<IEnemy>();
