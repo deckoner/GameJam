@@ -41,8 +41,5 @@ Explorando la entropía de la vida misma y el universo o tomando café.
 
 ---
 
-
-markdown
-Copiar código
 ## ❤️ **Agradecimientos**
 Gracias a **Ada Lovelace**, santa patrona de la programación (de las apuestas y del jagermeister con red bull si viviera actualmente), por inspirarnos a escribir código con elegancia y precisión. A **nuestro café de la finca Sidamo en etiopia**, por ser el verdadero motor de este proyecto (unity está sobrevalorado), transformando largas noches de trabajo (una) en una experiencia sensorial sublime. Y, por supuesto, a **Simba**, el gato de Brian, por ser la fuente inagotable de ánimo y ternura, recordándonos que a veces las mejores ideas surgen mientras estamos tumbados en el sofá con una bola de pelo a nuestro lado (Pero bola literal que está regordete y bonito).
