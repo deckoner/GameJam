@@ -2,40 +2,48 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 10f; // Bullet speed
-    public int damage = 1; // Bullet damage
-    public float lifeTime = 5f; // Time before the bullet disappears
+    #region Fields
+    public float lifeTime = 5f; // Tiempo de vida del proyectil antes de ser destruido
+    public int damage = 1; // Daño que causará el proyectil
+    private Rigidbody rb; // Rigidbody del proyectil para moverlo
+    #endregion
 
-    private Vector3 direction;
-
+    #region Unity Methods
     void Start()
     {
-        // Destroy the bullet after its lifetime
+        // Obtén el Rigidbody para poder mover la bala
+        rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("El proyectil debe tener un Rigidbody para moverse.");
+        }
+
+        // Destruye el proyectil después de un tiempo para evitar que se quede en la escena indefinidamente
         Destroy(gameObject, lifeTime);
     }
 
-    public void SetDirection(Vector3 direction)
+    void OnCollisionEnter(Collision collision)
     {
-        this.direction = direction;
-    }
-
-    void Update()
-    {
-        // Move the bullet in the set direction
-        transform.Translate(direction * speed * Time.deltaTime);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        // Verifica si el proyectil ha chocado con un enemigo
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            // Assuming the player has a method to take damage
-            // other.gameObject.GetComponent<PlayerHealth>()?.TakeDamage(damage);
-            Destroy(this); // Destroy the bullet on impact with the player
+            // Obtén el componente IEnemy del enemigo (como en el caso del slime)
+            IEnemy enemy = collision.gameObject.GetComponent<IEnemy>();
+            if (enemy != null)
+            {
+                // Llama a la función TakeDamage del enemigo, aplicando el daño
+                enemy.TakeDamage(damage);
+            }
+
+            // Destruye la bala al impactar
+            Destroy(gameObject);
         }
-        else
+
+        // Destruye la bala si colisiona con cualquier otro objeto
+        else if (collision.gameObject.CompareTag("Environment"))
         {
-            Destroy(gameObject); // Destroy the bullet if it hits something else
+            Destroy(gameObject);
         }
     }
+    #endregion
 }

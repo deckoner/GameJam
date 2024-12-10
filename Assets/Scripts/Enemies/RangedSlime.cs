@@ -177,9 +177,19 @@ public class RangedSlime : MonoBehaviour, IEnemy
         {
             // Crea el proyectil en la posición del slime y lo orienta hacia el jugador
             GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+
+            // Ignorar colisiones entre el proyectil y el slime
+            Collider projectileCollider = projectile.GetComponent<Collider>();
+            if (projectileCollider != null)
+            {
+                Collider slimeCollider = GetComponent<Collider>(); // Obtener el collider del shooter
+                Physics.IgnoreCollision(projectileCollider, slimeCollider);
+            }
+
+            // Dirigir el proyectil hacia el jugador
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
 
-            // Aplica velocidad al proyectil para que se mueva hacia el jugador
+            // Aplicar velocidad al proyectil para que se mueva hacia el jugador
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
             if (rb != null)
             {
@@ -193,6 +203,7 @@ public class RangedSlime : MonoBehaviour, IEnemy
             Debug.LogWarning("¡No se ha asignado el prefab del proyectil!");
         }
     }
+
 
     public void TakeDamage(int damage)
     {
