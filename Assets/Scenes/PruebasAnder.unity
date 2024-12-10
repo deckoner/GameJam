@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 615542836}
   - component: {fileID: 615542835}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 1022008520}
   - component: {fileID: 1022008524}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -473,8 +473,8 @@ GameObject:
   - component: {fileID: 1268756337}
   - component: {fileID: 1268756343}
   m_Layer: 0
-  m_Name: Basic
-  m_TagString: Untagged
+  m_Name: BasicSlime
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
