@@ -44,13 +44,13 @@ Material:
     - _Brightness: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Range: 0.3
+    - _Range: 0.2
     - _RimAmount: 0.89
-    - _Specular_Intensity: 0.451
+    - _Specular_Intensity: 0.395
     - _Specular_Range: 1
     m_Colors:
     - _RimColor: {r: 0.44282913, g: 1, b: 0.43867922, a: 0}
-    - _Specular_Color: {r: 0.096787095, g: 0.8207547, b: 0.10187729, a: 0}
+    - _Specular_Color: {r: 0.5849056, g: 0.093282804, b: 0.06437634, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5846405514051610228
 MonoBehaviour:
