@@ -97,13 +97,14 @@ MonoBehaviour:
   sightAngle: 45
   wanderSpeed: 3
   approachSpeed: 5
-  fleeSpeed: 3
   deathParticlesPrefab: {fileID: 2433282508523890284, guid: d73fe39dab8ea9f4fa694b41913c0a08, type: 3}
   slimeAudioClips:
   - {fileID: 8300000, guid: 08ce1c97d793ff14d9ff195e424e8bd0, type: 3}
   fleeAudioClips:
   - {fileID: 8300000, guid: 5f62317d633ca884eb599580ac37c2bf, type: 3}
   audioPlayRange: 10
+  audioClipMinDelay: 1
+  audioClipMaxDelay: 3
 --- !u!54 &8280147084660038571
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -186,7 +187,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
