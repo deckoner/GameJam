@@ -864,7 +864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d727199e98a734094536e24d74fa24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 2433282508537954060, guid: d73fe39dab8ea9f4fa694b41913c0a08, type: 3}
+  explosion: {fileID: 2433282508537954060, guid: 675e02f17cc5fbe498e662398ad7fe57, type: 3}
   planeta: {fileID: 1049235035}
   localizacion: {x: -0.078, y: 2.24, z: 2.871}
   sonidoExplosion: {fileID: 8300000, guid: 1394816f9f91ae54f9a55371a7c305c4, type: 3}
