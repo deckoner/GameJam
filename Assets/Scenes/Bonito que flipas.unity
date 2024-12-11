@@ -467,6 +467,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: resource-stone-large
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3cb152f2e514871459dd066b20fc0397, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -557,6 +561,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 97f211711b7536b4492962e33a57b502, type: 3}
       propertyPath: m_Name
       value: ladder (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 97f211711b7536b4492962e33a57b502, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1157,6 +1165,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ac13ebb553c6a1841a39a61dd60ad639, type: 3}
       propertyPath: m_Name
       value: tent-canvas-half (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ac13ebb553c6a1841a39a61dd60ad639, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2531,6 +2543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: poles (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 68cf54e0a14cd574197e9296b9dec4af, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2973,6 +2989,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 978bb7bd3ecbf454aad2af21994cd630, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3099,6 +3119,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f313d8c779f7313459e8fdc6ac0def72, type: 3}
       propertyPath: m_Name
       value: fence-doorway
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f313d8c779f7313459e8fdc6ac0def72, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4607668393258877731, guid: f313d8c779f7313459e8fdc6ac0def72, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3904,7 +3932,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -3912,7 +3940,7 @@ MonoBehaviour:
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
-  m_OverrideVoxelSize: 0
+  m_OverrideVoxelSize: 1
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 7b1442dfbb13c1c4b9e08a6f439e9c4b, type: 2}
@@ -4436,6 +4464,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b3c9f533add72c847ad041ba6a23cdc5, type: 3}
       propertyPath: m_Name
       value: tree-log-small
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b3c9f533add72c847ad041ba6a23cdc5, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5205,6 +5237,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: resource-stone-large
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3cb152f2e514871459dd066b20fc0397, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5394,6 +5430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tent-canvas (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 61364695223f0544eb66a800666a3816, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5521,6 +5561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: barrel
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 84d48f05bbc726541be757022a827b74, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5543,12 +5587,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2108380946107077419, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
+      propertyPath: alcanceMaximo
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108380946107077419, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: sonidoRecarga
       value: 
       objectReference: {fileID: 8300000, guid: 36120b92735577f44b6a918d5a49ebb3, type: 3}
     - target: {fileID: 4689087746718122161, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: m_Name
       value: FirstPersonController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689087746718122170, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4689087746718122173, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5564,7 +5616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4689087746718122173, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4689087746718122173, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: m_LocalRotation.x
@@ -5572,7 +5624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4689087746718122173, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4689087746718122173, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: m_LocalRotation.z
@@ -5584,7 +5636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4689087746718122173, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 4689087746718122173, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -5894,6 +5946,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower-slant-roof
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f93cf7beea30a4e4b94a2efe4b09363d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5985,6 +6041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence-corner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42ef1ee9fe7df864abfe2c7233e05f03, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6049,6 +6109,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5e697841765366e489d1a1d5e1757534, type: 3}
       propertyPath: m_Name
       value: fence-low-straight
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5e697841765366e489d1a1d5e1757534, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6986,6 +7050,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bedroll-packed (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6b4d9825e26ea0418c79dd07351e56e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7253,6 +7321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence-straight
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b492984190fc8c64a859fba05ff62626, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7350,6 +7422,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f93cf7beea30a4e4b94a2efe4b09363d, type: 3}
       propertyPath: m_Name
       value: tower-slant-roof (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f93cf7beea30a4e4b94a2efe4b09363d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7456,7 +7532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 556766648}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DecoraccionMeshColider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7800,6 +7876,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence-corner
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42ef1ee9fe7df864abfe2c7233e05f03, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8111,6 +8191,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9ecc9a3577894f94680d6adb1377de86, type: 3}
       propertyPath: m_Name
       value: tree-autumn-trunk
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9ecc9a3577894f94680d6adb1377de86, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8700,6 +8784,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: campfire-fishing-stand
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cbea29599f1846e44a7a5079c6c06885, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9210,6 +9298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tent-canvas (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 61364695223f0544eb66a800666a3816, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9663,6 +9755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ladder
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 97f211711b7536b4492962e33a57b502, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9753,6 +9849,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 68cf54e0a14cd574197e9296b9dec4af, type: 3}
       propertyPath: m_Name
       value: poles
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 68cf54e0a14cd574197e9296b9dec4af, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10142,6 +10242,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence-fortified
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32641ef5ac2485c4c852bd1159209bcf, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10249,6 +10353,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tent-canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 61364695223f0544eb66a800666a3816, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10317,6 +10425,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 69237ed9b79508f439926ded29b35c1b, type: 3}
       propertyPath: m_Name
       value: ladder-long
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69237ed9b79508f439926ded29b35c1b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10938,6 +11050,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tent-canvas-half
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ac13ebb553c6a1841a39a61dd60ad639, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11532,6 +11648,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 32641ef5ac2485c4c852bd1159209bcf, type: 3}
       propertyPath: m_Name
       value: fence-fortified
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32641ef5ac2485c4c852bd1159209bcf, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12503,6 +12623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bedroll-packed (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6b4d9825e26ea0418c79dd07351e56e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13233,6 +13357,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bedroll-packed (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6b4d9825e26ea0418c79dd07351e56e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13323,6 +13451,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b492984190fc8c64a859fba05ff62626, type: 3}
       propertyPath: m_Name
       value: fence-straight (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b492984190fc8c64a859fba05ff62626, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13596,6 +13728,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e6b4d9825e26ea0418c79dd07351e56e, type: 3}
       propertyPath: m_Name
       value: bedroll-packed (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6b4d9825e26ea0418c79dd07351e56e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13911,6 +14047,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53049169e7c514c498ed4f4d5775a409, type: 3}
       propertyPath: m_Name
       value: rock-sand-a
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53049169e7c514c498ed4f4d5775a409, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15747,6 +15887,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock-a
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd281d472173980468512145af9271f9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16572,6 +16716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 99ab62631a4e61543835fdaa8010106e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17003,6 +17151,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 42ef1ee9fe7df864abfe2c7233e05f03, type: 3}
       propertyPath: m_Name
       value: fence-corner
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42ef1ee9fe7df864abfe2c7233e05f03, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19071,6 +19223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower-slant-roof (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f93cf7beea30a4e4b94a2efe4b09363d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21059,6 +21215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crate-item
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1a1d961b7e093f345aecd7c4f613b8d4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21805,6 +21965,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence-low-broken
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c17fcce9bfb935043af6255ca59b671a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21911,6 +22075,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e6b4d9825e26ea0418c79dd07351e56e, type: 3}
       propertyPath: m_Name
       value: bedroll-packed (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6b4d9825e26ea0418c79dd07351e56e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22028,6 +22196,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0357e81629015db479472fb78de341e8, type: 3}
       propertyPath: m_Name
       value: rock-sand-b
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0357e81629015db479472fb78de341e8, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22681,6 +22853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock-sand-a
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53049169e7c514c498ed4f4d5775a409, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22798,6 +22974,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9b74cc6698861cf4fb0acbba81291165, type: 3}
       propertyPath: m_Name
       value: rock-flat-grass
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9b74cc6698861cf4fb0acbba81291165, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23150,9 +23330,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1751480086967751553, guid: 2d7d20e12f88ab9459c25f08a8297c97, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2d7d20e12f88ab9459c25f08a8297c97, type: 3}
       propertyPath: m_Name
       value: chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2d7d20e12f88ab9459c25f08a8297c97, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23202,7 +23390,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1441988704}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DecoraccionColider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23783,6 +23971,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree-autumn-trunk (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9ecc9a3577894f94680d6adb1377de86, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24043,6 +24235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: signpost
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8c3401a6b24cc07429ea770788866f97, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24210,6 +24406,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8fa9183a6e2c32d40981815bd6f2998b, type: 3}
       propertyPath: m_Name
       value: fence-broken
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8fa9183a6e2c32d40981815bd6f2998b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24883,6 +25083,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: resource-planks
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 929045c599d5fc24089bcbf7bd44c0a5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25145,6 +25349,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fence-straight (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b492984190fc8c64a859fba05ff62626, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25287,6 +25495,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2de0888a8887fa444be6495c6ed503a9, type: 3}
       propertyPath: m_Name
       value: unit-tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2de0888a8887fa444be6495c6ed503a9, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25473,6 +25685,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: abba5baec57d3d04fbc5d1f562086762, type: 3}
       propertyPath: m_Name
       value: tent
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: abba5baec57d3d04fbc5d1f562086762, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26016,6 +26232,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e6b4d9825e26ea0418c79dd07351e56e, type: 3}
       propertyPath: m_Name
       value: bedroll-packed
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6b4d9825e26ea0418c79dd07351e56e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27222,6 +27442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bottle-large
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7c2208c417b54e04489ba06ead0946cc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27312,6 +27536,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b492984190fc8c64a859fba05ff62626, type: 3}
       propertyPath: m_Name
       value: fence-straight (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b492984190fc8c64a859fba05ff62626, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28152,6 +28380,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 68cf54e0a14cd574197e9296b9dec4af, type: 3}
       propertyPath: m_Name
       value: poles (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 68cf54e0a14cd574197e9296b9dec4af, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29274,9 +29506,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7539680413617234126, guid: ccd3232a75bf89d42ba279a2b4532583, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -435065460499414210, guid: ccd3232a75bf89d42ba279a2b4532583, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ccd3232a75bf89d42ba279a2b4532583, type: 3}
       propertyPath: m_Name
       value: workbench
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ccd3232a75bf89d42ba279a2b4532583, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30119,6 +30363,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: unit-ship-large
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0e7bd2ebab8a811498f965e0a023473c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30369,6 +30617,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock-flat-grass
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9b74cc6698861cf4fb0acbba81291165, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30517,6 +30769,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 99ab62631a4e61543835fdaa8010106e, type: 3}
       propertyPath: m_Name
       value: crate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 99ab62631a4e61543835fdaa8010106e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31609,6 +31865,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: resource-stone-large (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3cb152f2e514871459dd066b20fc0397, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31772,6 +32032,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 27c92bc3e696e26458e6d3aa20f4110f, type: 3}
       propertyPath: m_Name
       value: unit-wall-tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 27c92bc3e696e26458e6d3aa20f4110f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32360,6 +32624,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 61364695223f0544eb66a800666a3816, type: 3}
       propertyPath: m_Name
       value: tent-canvas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 61364695223f0544eb66a800666a3816, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
