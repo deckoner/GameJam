@@ -3,7 +3,7 @@ using System.Collections;
 using TMPro;
 using DG.Tweening;
 
-public class Escopeta : MonoBehaviour
+public class ArmaV2 : MonoBehaviour
 {
     public int municion = 8; // Munición disponible
     public int municionMaxima = 8; // Munición máxima
@@ -14,22 +14,19 @@ public class Escopeta : MonoBehaviour
     public GameObject efectosDisparoDos; // Efectos visuales de disparo (partículas)
     public float cadenciaDeDisparo = 1f; // Tiempo entre disparos
     private float proximoDisparo = 0f; // Tiempo para el próximo disparo
-
     public AudioSource audioSourceDisparo; // AudioSource exclusivo para efectos de disparo
     public AudioSource audioSourceRecarga; // AudioSource para el sonido de recarga
-
     private bool recargando = false; // Bandera de recarga
-
     // Referencia a TextMeshPro para mostrar la munición en el HUD
     public TextMeshProUGUI textoMunicion; 
-
     // Referencia al transform del arma para animaciones
     public Transform armaTransform; // Referencia al transform del arma (debe asignarse en el Inspector)
-
     private Quaternion rotacionOriginal;
-
     // Nuevo parámetro para el alcance máximo de la escopeta
-    public float alcanceMaximo = 15f; // Alcance máximo de los disparos de la escopeta
+    public float alcanceMaximo = 15f;
+    public int dano;
+    [SerializeField] private Transform canon;
+    [SerializeField] private Color colorRaycast = Color.red; // Color de la línea
 
     void Start()
     {
@@ -93,23 +90,34 @@ public class Escopeta : MonoBehaviour
                 audioSourceDisparo.PlayOneShot(sonidoDisparo);
             }
 
+            // Realizar el raycast desde el cañón hacia el centro de la pantalla
+            Ray ray = new Ray(canon.position, DireccionHaciaCentroPantalla());
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, alcanceMaximo))
+            {
+                // Mostrar información del impacto en el log
+                Debug.Log($"Impacto en: {hit.collider.name} a una distancia de: {hit.distance}");
+
+                // Comprobar si el objeto impactado tiene la interfaz IEnemy
+                IEnemy enemy = hit.collider.GetComponent<IEnemy>();
+                if (enemy != null)
+                {
+                    Debug.Log($"Impacto a un enemigo: {hit.collider.name}. Aplicando {dano} de daño.");
+                    enemy.TakeDamage(dano);
+                }
+                
+                // Mostrar el punto exacto del impacto
+                Debug.DrawLine(ray.origin, hit.point, Color.green, 1.0f);
+            }
+
             // Activar efectos visuales
             efectosDisparo.SetActive(true);
             efectosDisparoDos.SetActive(true);
             Invoke("DesactivarEfectos", 0.1f);
 
-            // Disparar rayos (dispersión de escopeta)
-            for (int i = 0; i < 5; i++)
-            {
-                Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-                ray.direction = Quaternion.Euler(Random.insideUnitSphere * 0.1f) * ray.direction;
-
-                // Realizar el raycast con un alcance limitado
-                if (Physics.Raycast(ray, out RaycastHit hit, alcanceMaximo))
-                {
-                    Debug.Log("Impacto en: " + hit.collider.name);
-                }
-            }
+            // Visualizar el raycast completo
+            Debug.DrawRay(ray.origin, ray.direction * alcanceMaximo, colorRaycast, 1.0f);
 
             // Actualizar el tiempo de disparo y el HUD
             proximoDisparo = Time.time + cadenciaDeDisparo;
@@ -117,6 +125,41 @@ public class Escopeta : MonoBehaviour
             // Actualizar la interfaz de munición
             ActualizarHUD();
         }
+    }
+
+    // Método para calcular la dirección desde el cañón hacia el centro de la pantalla
+    private Vector3 DireccionHaciaCentroPantalla()
+    {
+        // Obtener un rayo desde la cámara al centro de la pantalla
+        Ray camRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        Vector3 puntoDestino;
+
+        // Usar un raycast para encontrar el punto en la dirección de la cámara
+        if (Physics.Raycast(camRay, out RaycastHit hit, alcanceMaximo))
+        {
+            puntoDestino = hit.point; // Si impacta, el punto destino es el impacto
+        }
+        else
+        {
+            puntoDestino = camRay.origin + camRay.direction * alcanceMaximo; // Si no impacta, usar el máximo alcance
+        }
+
+        // Devolver la dirección normalizada desde el cañón hacia el punto destino
+        return (puntoDestino - canon.position).normalized;
+    }
+
+    // Dibujar el raycast en el editor incluso cuando no se esté ejecutando
+    private void OnDrawGizmos()
+    {
+        if (canon == null || Camera.main == null) return;
+
+        Gizmos.color = colorRaycast;
+
+        // Obtener la dirección hacia el centro de la pantalla
+        Vector3 direccion = DireccionHaciaCentroPantalla();
+        Vector3 puntoFinal = canon.position + direccion * alcanceMaximo;
+
+        Gizmos.DrawLine(canon.position, puntoFinal);
     }
 
     void DesactivarEfectos()
