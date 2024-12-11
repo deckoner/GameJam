@@ -18,15 +18,19 @@ Nuestro juego, **Nombre Pepi en Progreso**, es una experiencia interactiva que d
 En este punto, incluso nosotros, los creadores, estamos atrapados en la búsqueda. ¿Es el juego un medio para llenar el vacío existencial de los confines del universo? 
 
 ### **Características principales**:
-- No lo sé, tú sabrás...
+- Una isla maravillosa en la que explorar
+- Disfruta de la mejor compañía con los slimes de la isla
+- Una bella banda sonora que te acompañara en tu mágica aventura
+- Y una manera de interactuar con los slimes que jamás imaginarás
+- Próximamente acompañado de Canela (Nintendo esto es broma porfavor no me envíes abogados como el que tengo aquí colgado)
 
 ---
 
 ## 📦 **Cómo probarlo**
 1. Descarga el juego (pronto añadiremos el enlace por aquí o no).  
-2. Descomprime y abre el ejecutable.
+2. Descomprime y abre el ejecutable, es portable que mola más.
 4. No te preocupes el aviso del antivirus tiene razón, vamos a minar con tu PC (Github esto broma, no me metas un ban otra vez porfa). 
-3. ¡Juega y comparte tus impresiones con nosotros o no! (si lo haces trae café)
+3. ¡Juega y comparte tus impresiones con nosotros o no! (si lo haces trae café de etiopia de nuestra finca sidamo)
 
 ---
 
@@ -38,8 +42,12 @@ En este punto, incluso nosotros, los creadores, estamos atrapados en la búsqued
 
 ## 🚀 **Estado actual**
 Explorando la entropía de la vida misma y el universo o tomando café.
+
 Brian esta en la carcel debido a un artercado con los Quaternions de Unity, estamos a la espera del juicio.
+
 Ander fue puesto a dormir, se creía que los scripts se aplicaban por magia o algo.
+
+Iker luego de su doctorado en nubelogia optó por los estudios en terraformación aplicada de la universidad Juan Carlos Tercero
 
 ---
 
