@@ -5500,6 +5500,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2108380946107077419, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
+      propertyPath: municion
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108380946107077419, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: alcanceMaximo
       value: 10
       objectReference: {fileID: 0}
@@ -5507,6 +5511,10 @@ PrefabInstance:
       propertyPath: sonidoRecarga
       value: 
       objectReference: {fileID: 8300000, guid: 36120b92735577f44b6a918d5a49ebb3, type: 3}
+    - target: {fileID: 2108380946107077419, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
+      propertyPath: municionMaxima
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4689087746718122161, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       propertyPath: m_Name
       value: FirstPersonController
