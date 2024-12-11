@@ -18,11 +18,16 @@ public class BasicSlime : MonoBehaviour, IEnemy
     [Header("Slime Effects")]
     [SerializeField] private ParticleSystem deathParticlesPrefab; // Reference to the particle system prefab
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip[] slimeAudioClips; // Array of possible audio clips
+    private AudioSource audioSource; // AudioSource component
+
     private static List<BasicSlime> allEnemies = new List<BasicSlime>(); // List to store all enemies
 
     private Transform player;
     private NavMeshAgent agent;
     private bool isPlayerInSight;
+    private float nextAudioPlayTime; // Timer for when to play next audio clip
     #endregion
 
     #region Unity Methods
@@ -42,6 +47,12 @@ public class BasicSlime : MonoBehaviour, IEnemy
             return;
         }
 
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>(); // Add AudioSource if it's missing
+        }
+
         // Add this enemy to the list of all enemies
         allEnemies.Add(this);
 
@@ -52,6 +63,10 @@ public class BasicSlime : MonoBehaviour, IEnemy
         }
 
         SetNewRandomWanderDestination();
+
+        // Randomize the interval between 5 and 10 seconds
+        float randomInterval = Random.Range(5f, 10f);
+        nextAudioPlayTime = Time.time + randomInterval; // Initialize the next audio play time
     }
 
     private void OnDestroy()
@@ -69,15 +84,7 @@ public class BasicSlime : MonoBehaviour, IEnemy
     private void Update()
     {
         ReactToPlayer();
-
-        // Check for "Q" key press and make enemies lose 1 health
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            foreach (var enemy in allEnemies)
-            {
-                enemy.TakeDamage(1); // Deal 1 damage to each enemy
-            }
-        }
+        PlayRandomAudioClip();
     }
     #endregion
 
@@ -159,6 +166,24 @@ public class BasicSlime : MonoBehaviour, IEnemy
             }
 
             Destroy(gameObject); // Enemy dies
+        }
+    }
+    #endregion
+
+    #region Audio
+    private void PlayRandomAudioClip()
+    {
+        if (slimeAudioClips.Length == 0 || audioSource.isPlaying) return; // No clips or already playing
+
+        // Play a random audio clip at the defined interval
+        if (Time.time >= nextAudioPlayTime)
+        {
+            int randomIndex = Random.Range(0, slimeAudioClips.Length);
+            audioSource.PlayOneShot(slimeAudioClips[randomIndex]);
+
+            // Randomize the next audio play time between 5 and 10 seconds
+            float randomInterval = Random.Range(5f, 10f);
+            nextAudioPlayTime = Time.time + randomInterval;
         }
     }
     #endregion

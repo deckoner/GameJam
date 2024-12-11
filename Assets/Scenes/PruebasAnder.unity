@@ -439,6 +439,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4689087746718122161, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1194850717}
+    - targetCorrespondingSourceObject: {fileID: 4689087746718122161, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1194850718}
   m_SourcePrefab: {fileID: 100100000, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
 --- !u!1 &1022008519
 GameObject:
@@ -596,6 +599,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCountText: {fileID: 343440422}
+--- !u!81 &1194850718
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194850709}
+  m_Enabled: 1
 --- !u!1 &1275190724
 GameObject:
   m_ObjectHideFlags: 0
