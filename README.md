@@ -1,4 +1,4 @@
-# 🌌 **Nombre pepi en progreso** 🌥️
+# 🌌 **The happy island of the happy slimes** 🌥️
 
 ¡Bienvenidos! Este es el juego que desarrollamos para la **Game Jam**. Fue una experiencia intensa, divertida (o no) y con muchos ideales comunistas (y café del caro, de ese capitalista). Nos presentamos:
 
@@ -13,7 +13,7 @@ Un equipo pequeño pero apañado:
 ---
 
 ## 🎮 **¿De qué va esto?**
-Nuestro juego, **Nombre Pepi en Progreso**, es una experiencia interactiva que desafía los límites de la percepción y el entendimiento. Sumérgete en una exploración filosófica de la nada absoluta, un espacio donde el significado es tan efímero como el concepto mismo de existencia. A medida que avanzas, las preguntas más fundamentales emergen: ¿qué es la realidad? ¿Qué hay más allá del vacío? Y, lo más importante, ¿es el "hacer" un imperativo o una ilusión en este universo indefinido?
+Nuestro juego, **The happy island of the happy slimes**, es una experiencia interactiva que desafía los límites de la percepción y el entendimiento. Sumérgete en una exploración filosófica de la nada absoluta, un espacio donde el significado es tan efímero como el concepto mismo de existencia. A medida que avanzas, las preguntas más fundamentales emergen: ¿qué es la realidad? ¿Qué hay más allá del vacío? Y, lo más importante, ¿es el "hacer" un imperativo o una ilusión en este universo indefinido?
 
 En este punto, incluso nosotros, los creadores, estamos atrapados en la búsqueda. ¿Es el juego un medio para llenar el vacío existencial de los confines del universo? 
 
