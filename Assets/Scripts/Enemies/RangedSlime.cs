@@ -1,35 +1,34 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using DG.Tweening;
 
-public class RangedSlime : MonoBehaviour, IEnemy
+[RequireComponent(typeof(NavMeshAgent))]
+public class RangedSlime : MonoBehaviour
 {
     #region Fields
     public int Health { get; set; } = 1;
-    public int sightRange = 20;
-    public int sightAngle = 45;
-    public float wanderSpeed = 1f;
-    public float approachSpeed = 2f;
-    public float playerTrackingRange = 5f;
 
-    public float attackRange = 10f;
-    public float shootCooldown = 2f;
-    private float lastShootTime;
+    [Header("Sight Settings")]
+    [SerializeField] private int sightRange = 20;
+    [SerializeField] private int sightAngle = 45;
+
+    [Header("Movement Settings")]
+    [SerializeField] private float wanderSpeed = 1f;
+    [SerializeField] private float approachSpeed = 2f;
+
+    [Header("Jump Settings")]
+    [SerializeField] private float jumpHeight = 1.5f;  // Adjusted for less frenetic jumping
+    [SerializeField] private float jumpDuration = 0.8f; // Adjusted for smoother jump
+    private float groundY;
+
+    [Header("Slime Effects")]
+    [SerializeField] private ParticleSystem deathParticlesPrefab; // Reference to the particle system prefab
 
     private Transform player;
     private NavMeshAgent agent;
-    private Vector3 lastKnownPlayerPosition;
-    private bool isPlayerInSight = false;
-
-    public GameObject projectilePrefab;
-    public float projectileSpeed = 10f;
-
-    private bool isJumping = false; // To control jump animation
-    private float groundY; // Store the ground level for resetting height
-
-    [Header("Jump Settings")]
-    [SerializeField] private float jumpHeight = 1f;
-    [SerializeField] private float jumpDuration = 0.5f;
+    private bool isPlayerInSight;
+    private bool isJumping;
+    private static List<RangedSlime> allEnemies = new List<RangedSlime>(); // List to store all enemies
     #endregion
 
     #region Unity Methods
@@ -49,27 +48,48 @@ public class RangedSlime : MonoBehaviour, IEnemy
             return;
         }
 
-        groundY = transform.position.y; // Store the ground level
+        groundY = transform.position.y;
+
+        // Add this enemy to the list of all enemies
+        allEnemies.Add(this);
+
+        // Notify GestorEnemigos about this slime's spawn
+        if (GestorEnemigos.Instance != null)
+        {
+            GestorEnemigos.Instance.AddEnemy();
+        }
+
         SetNewRandomWanderDestination();
+    }
+
+    private void OnDestroy()
+    {
+        // Remove this enemy from the list when destroyed
+        allEnemies.Remove(this);
+
+        // Notify GestorEnemigos about this slime's death
+        if (GestorEnemigos.Instance != null)
+        {
+            GestorEnemigos.Instance.RemoveEnemy();
+        }
     }
 
     private void Update()
     {
         ReactToPlayer();
 
-        if (isPlayerInSight && Time.time - lastShootTime > shootCooldown)
-        {
-            ShootAtPlayer();
-        }
-
+        // Check for "Q" key press and make enemies lose 1 health
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            MakeAllEnemiesLoseHealth();
+            foreach (var enemy in allEnemies)
+            {
+                enemy.TakeDamage(1); // Deal 1 damage to each enemy
+            }
         }
     }
     #endregion
 
-    #region Movement and Jumping
+    #region Movement
     private void ReactToPlayer()
     {
         if (player == null) return;
@@ -77,8 +97,7 @@ public class RangedSlime : MonoBehaviour, IEnemy
         if (IsPlayerInSight(player.position))
         {
             isPlayerInSight = true;
-            lastKnownPlayerPosition = player.position;
-            JumpTowardsTarget(lastKnownPlayerPosition, approachSpeed);
+            ApproachPlayer(player.position);
         }
         else
         {
@@ -87,69 +106,37 @@ public class RangedSlime : MonoBehaviour, IEnemy
         }
     }
 
+    private void ApproachPlayer(Vector3 targetPosition)
+    {
+        if (agent.isStopped) agent.isStopped = false;
+
+        agent.speed = approachSpeed;
+        agent.SetDestination(targetPosition);
+    }
+
     public void Wander()
     {
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             SetNewRandomWanderDestination();
         }
-        JumpTowardsTarget(agent.destination, wanderSpeed);
+
+        agent.speed = wanderSpeed;
     }
 
     private void SetNewRandomWanderDestination()
     {
         Vector3 randomDirection = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
-        Vector3 newWanderTarget = transform.position + randomDirection;
+        Vector3 target = transform.position + randomDirection;
 
-        if (NavMesh.SamplePosition(newWanderTarget, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(target, out NavMeshHit hit, 2f, NavMesh.AllAreas))
         {
             agent.SetDestination(hit.position);
         }
     }
-
-    private void JumpTowardsTarget(Vector3 targetPosition, float speed)
-    {
-        if (isJumping) return;
-
-        isJumping = true;
-
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        Vector3 jumpTarget = new Vector3(
-            transform.position.x + direction.x * speed * jumpDuration,
-            groundY + jumpHeight,
-            transform.position.z + direction.z * speed * jumpDuration
-        );
-
-        transform.DOMove(jumpTarget, jumpDuration)
-            .SetEase(Ease.OutQuad)
-            .OnComplete(() =>
-            {
-                Vector3 landPosition = new Vector3(jumpTarget.x, groundY, jumpTarget.z);
-                transform.DOMove(landPosition, jumpDuration)
-                    .SetEase(Ease.InQuad)
-                    .OnComplete(() => isJumping = false);
-            });
-    }
     #endregion
 
-    #region Combat
-    private void ShootAtPlayer()
-    {
-        if (projectilePrefab == null) return;
-
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        Physics.IgnoreCollision(projectile.GetComponent<Collider>(), GetComponent<Collider>());
-
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
-        Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.velocity = directionToPlayer * projectileSpeed;
-        }
-
-        lastShootTime = Time.time;
-    }
-
+    #region Utilities
     private bool IsPlayerInSight(Vector3 playerPosition)
     {
         Vector3 directionToPlayer = playerPosition - transform.position;
@@ -162,28 +149,24 @@ public class RangedSlime : MonoBehaviour, IEnemy
 
         return false;
     }
-    #endregion
 
-    #region Utilities
     public void TakeDamage(int damage)
     {
         Health -= damage;
+        Debug.Log($"Slime took damage! Current health: {Health}");
+
         if (Health <= 0)
         {
-            Destroy(gameObject);
-        }
-    }
+            Debug.Log("Slime defeated!");
 
-    private void MakeAllEnemiesLoseHealth()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
-        {
-            IEnemy enemyScript = enemy.GetComponent<IEnemy>();
-            if (enemyScript != null)
+            // Instantiate the particle system prefab and play it at the slime's position
+            if (deathParticlesPrefab != null)
             {
-                enemyScript.TakeDamage(1);
+                ParticleSystem particles = Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
+                particles.Play(); // Play the particle effect
             }
+
+            Destroy(gameObject); // Enemy dies
         }
     }
     #endregion
