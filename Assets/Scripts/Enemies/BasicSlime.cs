@@ -24,6 +24,8 @@ public class BasicSlime : MonoBehaviour, IEnemy
     [SerializeField] private float audioPlayRange = 10f; // Range in which the audio will be played
     [SerializeField] private float audioClipMinDelay = 1f; // Minimum time between playing audio clips
     [SerializeField] private float audioClipMaxDelay = 8f; // Maximum time between playing audio clips
+    private static int maxConcurrentAudioClips = 5; // Max number of clips playing at the same time
+    private static int currentAudioClips = 0; // Counter for how many clips are currently playing
 
     private static List<BasicSlime> allEnemies = new List<BasicSlime>(); // List to store all enemies
 
@@ -157,36 +159,34 @@ public class BasicSlime : MonoBehaviour, IEnemy
 
     private void PlayRandomAudioClip()
     {
-        if (slimeAudioClips.Length == 0 || audioSource.isPlaying || Time.time < nextAudioTime) return; // No clips, already playing, or delay hasn't passed
+        if (slimeAudioClips.Length == 0 || audioSource.isPlaying || Time.time < nextAudioTime) return;
+
+        // Check if we can play a new audio clip (limit concurrent clips)
+        if (currentAudioClips >= maxConcurrentAudioClips) return;
 
         // Play audio only if the player is close enough
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
         if (distanceToPlayer <= audioPlayRange)
         {
             int randomIndex = Random.Range(0, slimeAudioClips.Length);
             audioSource.clip = slimeAudioClips[randomIndex];
 
             // Adjust volume based on distance (closer = louder, farther = quieter)
-            float volume = Mathf.InverseLerp(0f, audioPlayRange, distanceToPlayer); // Inverse lerp for better fading
+            float volume = Mathf.InverseLerp(0f, audioPlayRange, distanceToPlayer);
             audioSource.volume = volume;
 
-            audioSource.PlayOneShot(audioSource.clip); // Play the audio clip
+            audioSource.PlayOneShot(audioSource.clip);
+            currentAudioClips++; // Increment counter
 
             // Set the next time to play a clip, randomizing the delay
             nextAudioTime = Time.time + Random.Range(audioClipMinDelay, audioClipMaxDelay);
         }
 
-        // Play a fleeing sound when the slime is running away
-        if (isFleeing && fleeAudioClips.Length > 0)
-        {
-            // Immediately play a random fleeing audio clip when fleeing
-            int randomIndex = Random.Range(0, fleeAudioClips.Length);
-            audioSource.PlayOneShot(fleeAudioClips[randomIndex]);
-
-            isFleeing = false; // Reset fleeing flag after playing sound
-        }
+        // Reset the counter when the audio is finished playing
+        audioSource.PlayOneShot(audioSource.clip);
+        currentAudioClips--; // Decrement counter
     }
+
 
     public void TakeDamage(int damage)
     {
