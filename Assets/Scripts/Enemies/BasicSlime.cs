@@ -30,10 +30,8 @@ public class BasicSlime : MonoBehaviour, IEnemy
     private Transform player;
     private NavMeshAgent agent;
     private bool isPlayerInSight;
-    private float nextAudioPlayTime; // Timer for when to play next audio clip
     private bool isDead = false; // To track if the slime is dead
     private bool isFleeing = false; // To track if the slime is currently fleeing
-    private float fleeAudioDelay; // Delay for fleeing audio (random between 0.1 and 0.5 seconds)
     #endregion
 
     #region Unity Methods
@@ -69,10 +67,6 @@ public class BasicSlime : MonoBehaviour, IEnemy
         }
 
         SetNewRandomWanderDestination();
-
-        // Randomize the interval between 5 and 10 seconds
-        float randomInterval = Random.Range(5f, 10f);
-        nextAudioPlayTime = Time.time + randomInterval; // Initialize the next audio play time
     }
 
     private void OnDestroy()
@@ -194,40 +188,31 @@ public class BasicSlime : MonoBehaviour, IEnemy
         if (slimeAudioClips.Length == 0 || audioSource.isPlaying) return; // No clips or already playing
 
         // Play audio only if the player is close enough
-        if (Vector3.Distance(transform.position, player.position) <= audioPlayRange)
-        {
-            // Play a random audio clip at the defined interval
-            if (Time.time >= nextAudioPlayTime)
-            {
-                int randomIndex = Random.Range(0, slimeAudioClips.Length);
-                audioSource.PlayOneShot(slimeAudioClips[randomIndex]);
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-                // Randomize the next audio play time between 5 and 10 seconds
-                float randomInterval = Random.Range(5f, 10f);
-                nextAudioPlayTime = Time.time + randomInterval;
-            }
+        if (distanceToPlayer <= audioPlayRange)
+        {
+            int randomIndex = Random.Range(0, slimeAudioClips.Length);
+            audioSource.clip = slimeAudioClips[randomIndex];
+
+            // Adjust volume based on distance (closer = louder, farther = quieter)
+            float volume = Mathf.Lerp(1f, 0f, distanceToPlayer / audioPlayRange); // Adjust this formula for smoother volume control
+            audioSource.volume = volume;
+
+            audioSource.PlayOneShot(audioSource.clip); // Play the audio clip
         }
 
         // Play a fleeing sound when the slime is running away
         if (isFleeing && fleeAudioClips.Length > 0)
         {
-            // Introduce a random delay between 0.1 and 0.5 seconds before playing fleeing sound
-            if (fleeAudioDelay <= 0)
-            {
-                int randomIndex = Random.Range(0, fleeAudioClips.Length);
-                audioSource.PlayOneShot(fleeAudioClips[randomIndex]);
-
-                // Reset the flee audio delay timer
-                fleeAudioDelay = Random.Range(0.1f, 0.5f);
-            }
-            else
-            {
-                fleeAudioDelay -= Time.deltaTime; // Countdown until we play the fleeing audio
-            }
+            // Immediately play a random fleeing audio clip when fleeing
+            int randomIndex = Random.Range(0, fleeAudioClips.Length);
+            audioSource.PlayOneShot(fleeAudioClips[randomIndex]);
 
             isFleeing = false; // Reset fleeing flag after playing sound
         }
     }
+
     #endregion
 
     #region Fleeing Behavior
