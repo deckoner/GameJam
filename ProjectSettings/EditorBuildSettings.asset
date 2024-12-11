@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Inicio.unity
+    guid: 0035955a144c76b429e425dea709d909
+  - enabled: 1
+    path: Assets/Scenes/Purificacion.unity
+    guid: 9da3ac557f4d9b5469d297cdfbfe42ef
+  - enabled: 1
+    path: Assets/Scenes/Bonito que flipas.unity
+    guid: d3895028b73301a4db9264bbdc7ff707
   m_configObjects: {}
