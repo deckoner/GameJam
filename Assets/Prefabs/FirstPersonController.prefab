@@ -10258,7 +10258,7 @@ MonoBehaviour:
   municionMaxima: 8
   tiempoRecarga: 2
   sonidoDisparo: {fileID: 8300000, guid: f318968434bfcb442a09dc46fd290efc, type: 3}
-  sonidoRecarga: {fileID: 8300000, guid: f318968434bfcb442a09dc46fd290efc, type: 3}
+  sonidoRecarga: {fileID: 8300000, guid: 36120b92735577f44b6a918d5a49ebb3, type: 3}
   efectosDisparo: {fileID: 9038940193407370622}
   efectosDisparoDos: {fileID: 1369039801541514221}
   cadenciaDeDisparo: 1

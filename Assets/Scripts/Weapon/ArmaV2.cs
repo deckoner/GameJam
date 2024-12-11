@@ -106,7 +106,7 @@ public class ArmaV2 : MonoBehaviour
                     Debug.Log($"Impacto a un enemigo: {hit.collider.name}. Aplicando {dano} de daño.");
                     enemy.TakeDamage(dano);
                 }
-                
+
                 // Mostrar el punto exacto del impacto
                 Debug.DrawLine(ray.origin, hit.point, Color.green, 1.0f);
             }
@@ -175,16 +175,16 @@ public class ArmaV2 : MonoBehaviour
         // Guardar la rotación local original del arma
         rotacionOriginal = armaTransform.localRotation;
 
+        // Animación de recarga (arma hacia abajo) con cuaternión
+        Quaternion rotacionRecarga = Quaternion.Euler(new Vector3(-30f, 180f, 0f));
+        armaTransform.DORotateQuaternion(rotacionRecarga, 0.5f);  // Aquí animamos la rotación
+        yield return new WaitForSeconds(0.5f); // Esperar la mitad del tiempo de recarga antes de volver a poner el arma
+
         // Reproducir sonido de recarga
         if (sonidoRecarga != null && audioSourceRecarga != null)
         {
             audioSourceRecarga.PlayOneShot(sonidoRecarga);
         }
-
-        // Animación de recarga (arma hacia abajo) con cuaternión
-        Quaternion rotacionRecarga = Quaternion.Euler(new Vector3(-30f, 180f, 0f));
-        armaTransform.DORotateQuaternion(rotacionRecarga, 0.5f);  // Aquí animamos la rotación
-        yield return new WaitForSeconds(0.5f); // Esperar la mitad del tiempo de recarga antes de volver a poner el arma
 
         // Espera durante el tiempo de recarga
         yield return new WaitForSeconds(tiempoRecarga - 0.5f);
