@@ -8,7 +8,7 @@
 Un equipo pequeño pero apañado:
 - **Brian**: Código, shaders y yonki del café (posible culpable de algún delito).  
 - **Iker**: Arte, diseño visual y doctorado en nubelogia, si eso existe (no lo busques porfa).  
-- **Ander**: Diseñador de niveles, testeo y posible víctima de comentarios homoeroticofestivos (lo siento chicos ya está cogido).
+- **Ander**: Diseñador de niveles, testeo y víctima de comentarios homoeroticofestivos (lo siento chicos ya está cogido).
 
 ---
 
