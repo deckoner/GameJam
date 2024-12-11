@@ -38,6 +38,7 @@ En este punto, incluso nosotros, los creadores, estamos atrapados en la búsqued
 
 ## 🚀 **Estado actual**
 Explorando la entropía de la vida misma y el universo o tomando café.
+Brian esta en la carcel debido a un artercado con los Quaternions de Unity, estamos a la espera del juicio
 
 ---
 

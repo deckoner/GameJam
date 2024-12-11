@@ -1,47 +1,80 @@
 using UnityEngine;
-using System.Collections; // Necesario para usar IEnumerator
+using System.Collections;
+using TMPro;
+using DG.Tweening;
 
 public class Escopeta : MonoBehaviour
 {
-    // Configuración del arma
     public int municion = 8; // Munición disponible
     public int municionMaxima = 8; // Munición máxima
     public float tiempoRecarga = 2f; // Tiempo de recarga
     public AudioClip sonidoDisparo; // Audio del disparo
+    public AudioClip sonidoRecarga; // Sonido de recarga
     public GameObject efectosDisparo; // Efectos visuales de disparo (partículas)
     public GameObject efectosDisparoDos; // Efectos visuales de disparo (partículas)
     public float cadenciaDeDisparo = 1f; // Tiempo entre disparos
     private float proximoDisparo = 0f; // Tiempo para el próximo disparo
 
-    // Configuración de disparo
-    public int cantidadRaycasts = 5; // Cantidad de rayos que la escopeta disparará (simulando esparcimiento)
-    public float dispersion = 0.1f; // Cuánto se dispersan los rayos en grados
-    private AudioSource audioSource; // Fuente de audio para reproducir el sonido
+    public AudioSource audioSourceDisparo; // AudioSource exclusivo para efectos de disparo
+    public AudioSource audioSourceRecarga; // AudioSource para el sonido de recarga
 
     private bool recargando = false; // Bandera de recarga
 
+    // Referencia a TextMeshPro para mostrar la munición en el HUD
+    public TextMeshProUGUI textoMunicion; 
+
+    // Referencia al transform del arma para animaciones
+    public Transform armaTransform; // Referencia al transform del arma (debe asignarse en el Inspector)
+
+    private Quaternion rotacionOriginal;
+
+    // Nuevo parámetro para el alcance máximo de la escopeta
+    public float alcanceMaximo = 15f; // Alcance máximo de los disparos de la escopeta
+
     void Start()
     {
-        // Obtener el componente AudioSource
-        audioSource = GetComponent<AudioSource>();
+        // Verificar que el AudioSource para disparos y recarga estén configurados
+        if (audioSourceDisparo == null || audioSourceRecarga == null)
+        {
+            Debug.LogError("AudioSource para disparos o recarga no asignado.");
+            return;
+        }
 
         // Asegurarse de que los efectos estén desactivados al inicio
         efectosDisparo.SetActive(false);
         efectosDisparoDos.SetActive(false);
+
+        // Verificar que el TextMeshPro para la munición esté asignado
+        if (textoMunicion == null)
+        {
+            Debug.LogError("Texto de munición no asignado.");
+            return;
+        }
+
+        // Verificar que el arma esté asignada
+        if (armaTransform == null)
+        {
+            Debug.LogError("Transform del arma no asignado.");
+            return;
+        }
+
+        // Almacenar la rotación original del arma
+        rotacionOriginal = armaTransform.rotation;
+
+        // Actualizar el texto del HUD con la munición inicial
+        ActualizarHUD();
     }
 
     void Update()
     {   
-        // si se ha presionado el boton de disprar
-        if (Input.GetMouseButton(0)) {
-            // si hay munición
+        if (Input.GetMouseButton(0)) // Botón de disparo
+        {
             if (municion > 0 && !recargando && Time.time >= proximoDisparo)
             {
                 Disparar();
             }
         }
 
-        // Recarga manual al presionar la tecla "R"
         if (Input.GetKeyDown(KeyCode.R) && !recargando && municion < municionMaxima)
         {
             StartCoroutine(Recargar());
@@ -52,41 +85,42 @@ public class Escopeta : MonoBehaviour
     {
         if (municion > 0)
         {
-            // Descontar munición
             municion--;
 
             // Reproducir sonido de disparo
-            audioSource.PlayOneShot(sonidoDisparo);
+            if (sonidoDisparo != null && audioSourceDisparo != null)
+            {
+                audioSourceDisparo.PlayOneShot(sonidoDisparo);
+            }
 
             // Activar efectos visuales
             efectosDisparo.SetActive(true);
             efectosDisparoDos.SetActive(true);
             Invoke("DesactivarEfectos", 0.1f);
 
-            // Disparar múltiples rayos para simular el disparo de la escopeta
-            for (int i = 0; i < cantidadRaycasts; i++)
+            // Disparar rayos (dispersión de escopeta)
+            for (int i = 0; i < 5; i++)
             {
-                // Dispersar los rayos en un ángulo aleatorio
                 Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-                ray.direction = Quaternion.Euler(Random.insideUnitSphere * dispersion) * ray.direction;
+                ray.direction = Quaternion.Euler(Random.insideUnitSphere * 0.1f) * ray.direction;
 
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                // Realizar el raycast con un alcance limitado
+                if (Physics.Raycast(ray, out RaycastHit hit, alcanceMaximo))
                 {
-                    // Aquí puedes agregar lógica para lo que sucede cuando el raycast impacta un objeto
-                    // Como aplicar daño a un enemigo, destruir objetos, etc.
                     Debug.Log("Impacto en: " + hit.collider.name);
                 }
             }
 
-            // Calcular el próximo disparo
+            // Actualizar el tiempo de disparo y el HUD
             proximoDisparo = Time.time + cadenciaDeDisparo;
+
+            // Actualizar la interfaz de munición
+            ActualizarHUD();
         }
     }
 
     void DesactivarEfectos()
     {
-        // Desactivar efectos visuales después de cierto tiempo
         efectosDisparo.SetActive(false);
         efectosDisparoDos.SetActive(false);
     }
@@ -94,10 +128,38 @@ public class Escopeta : MonoBehaviour
     IEnumerator Recargar()
     {
         recargando = true;
-        // Aquí puedes agregar animaciones o efectos de recarga si lo deseas
-        Debug.Log("Recargando...");
-        yield return new WaitForSeconds(tiempoRecarga); // Esperar el tiempo de recarga
-        municion = municionMaxima; // Recargar la munición
-        recargando = false; // Terminar recarga
+
+        // Guardar la rotación local original del arma
+        rotacionOriginal = armaTransform.localRotation;
+
+        // Reproducir sonido de recarga
+        if (sonidoRecarga != null && audioSourceRecarga != null)
+        {
+            audioSourceRecarga.PlayOneShot(sonidoRecarga);
+        }
+
+        // Animación de recarga (arma hacia abajo) con cuaternión
+        Quaternion rotacionRecarga = Quaternion.Euler(new Vector3(-30f, 180f, 0f));
+        armaTransform.DORotateQuaternion(rotacionRecarga, 0.5f);  // Aquí animamos la rotación
+        yield return new WaitForSeconds(0.5f); // Esperar la mitad del tiempo de recarga antes de volver a poner el arma
+
+        // Espera durante el tiempo de recarga
+        yield return new WaitForSeconds(tiempoRecarga - 0.5f);
+
+        // Recarga finalizada
+        municion = municionMaxima;
+        recargando = false;
+
+        // Volver a la rotación original usando localRotation (para evitar que se vea afectado por el movimiento global)
+        armaTransform.DOLocalRotateQuaternion(rotacionOriginal, 0.5f);  // Animamos la rotación local
+
+        // Actualizar la interfaz de munición
+        ActualizarHUD();
+    }
+    
+    // Método para actualizar el texto del HUD
+    void ActualizarHUD()
+    {
+        textoMunicion.text = municion + "/" + municionMaxima;
     }
 }
