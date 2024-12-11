@@ -14,15 +14,23 @@ public class BasicSlime : MonoBehaviour, IEnemy
     [Header("Movement Settings")]
     [SerializeField] private float wanderSpeed = 1f;
     [SerializeField] private float approachSpeed = 2f;
+    [SerializeField] private float fleeSpeed = 3f; // Speed at which the slime flees
 
     [Header("Slime Effects")]
     [SerializeField] private ParticleSystem deathParticlesPrefab; // Reference to the particle system prefab
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip[] slimeAudioClips; // Array of possible audio clips
+    private AudioSource audioSource; // AudioSource component
+    [SerializeField] private float audioPlayRange = 10f; // Range at which the slime will play sounds
 
     private static List<BasicSlime> allEnemies = new List<BasicSlime>(); // List to store all enemies
 
     private Transform player;
     private NavMeshAgent agent;
     private bool isPlayerInSight;
+    private float nextAudioPlayTime; // Timer for when to play next audio clip
+    private bool isDead = false; // To track if the slime is dead
     #endregion
 
     #region Unity Methods
@@ -42,6 +50,12 @@ public class BasicSlime : MonoBehaviour, IEnemy
             return;
         }
 
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>(); // Add AudioSource if it's missing
+        }
+
         // Add this enemy to the list of all enemies
         allEnemies.Add(this);
 
@@ -52,6 +66,10 @@ public class BasicSlime : MonoBehaviour, IEnemy
         }
 
         SetNewRandomWanderDestination();
+
+        // Randomize the interval between 5 and 10 seconds
+        float randomInterval = Random.Range(5f, 10f);
+        nextAudioPlayTime = Time.time + randomInterval; // Initialize the next audio play time
     }
 
     private void OnDestroy()
@@ -64,19 +82,20 @@ public class BasicSlime : MonoBehaviour, IEnemy
         {
             GestorEnemigos.Instance.RemoveEnemy();
         }
+
+        // Trigger fleeing behavior for nearby slimes when this one dies
+        if (isDead)
+        {
+            MakeNearbySlimesFlee();
+        }
     }
 
     private void Update()
     {
-        ReactToPlayer();
-
-        // Check for "Q" key press and make enemies lose 1 health
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (!isDead)
         {
-            foreach (var enemy in allEnemies)
-            {
-                enemy.TakeDamage(1); // Deal 1 damage to each enemy
-            }
+            ReactToPlayer();
+            PlayRandomAudioClip();
         }
     }
     #endregion
@@ -144,11 +163,14 @@ public class BasicSlime : MonoBehaviour, IEnemy
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return; // Don't process damage if already dead
+
         Health -= damage;
         Debug.Log($"Slime took damage! Current health: {Health}");
 
         if (Health <= 0)
         {
+            isDead = true;
             Debug.Log("Slime defeated!");
 
             // Instantiate the particle system prefab and play it at the slime's position
@@ -159,6 +181,48 @@ public class BasicSlime : MonoBehaviour, IEnemy
             }
 
             Destroy(gameObject); // Enemy dies
+        }
+    }
+    #endregion
+
+    #region Audio
+    private void PlayRandomAudioClip()
+    {
+        if (slimeAudioClips.Length == 0 || audioSource.isPlaying) return; // No clips or already playing
+
+        // Play audio only if the player is close enough
+        if (Vector3.Distance(transform.position, player.position) <= audioPlayRange)
+        {
+            // Play a random audio clip at the defined interval
+            if (Time.time >= nextAudioPlayTime)
+            {
+                int randomIndex = Random.Range(0, slimeAudioClips.Length);
+                audioSource.PlayOneShot(slimeAudioClips[randomIndex]);
+
+                // Randomize the next audio play time between 5 and 10 seconds
+                float randomInterval = Random.Range(5f, 10f);
+                nextAudioPlayTime = Time.time + randomInterval;
+            }
+        }
+    }
+    #endregion
+
+    #region Fleeing Behavior
+    private void MakeNearbySlimesFlee()
+    {
+        foreach (var slime in allEnemies)
+        {
+            if (slime == this) continue; // Skip self
+
+            // Flee if within range (e.g., 15 units)
+            if (Vector3.Distance(slime.transform.position, transform.position) <= 15f)
+            {
+                Vector3 fleeDirection = slime.transform.position - transform.position; // Direction away from the dead slime
+                Vector3 fleeTarget = slime.transform.position + fleeDirection.normalized * 5f; // Flee by 5 units
+
+                slime.agent.SetDestination(fleeTarget); // Set destination to flee position
+                slime.agent.speed = fleeSpeed; // Increase speed while fleeing
+            }
         }
     }
     #endregion
