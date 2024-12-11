@@ -52,9 +52,17 @@ public class GestorEnemigos : MonoBehaviour
 
         if (enemyCount <= 0)
         {
-            Hud.SetActive(false);
-            SceneManager.LoadPurificacion();
+            Hud.SetActive(false); // Desactivar el HUD inmediatamente
+            Invoke("LoadPurificacionScene", 1.5f); // Llamar a LoadPurificacionScene después de 1 segundo
         }
+    }
+
+    /// <summary>
+    /// Método que carga la escena de purificación después de 1 segundo.
+    /// </summary>
+    private void LoadPurificacionScene()
+    {
+        SceneManager.LoadPurificacion();
     }
 
     /// <summary>
