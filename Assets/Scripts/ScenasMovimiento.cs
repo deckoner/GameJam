@@ -1,29 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ScenasMovimiento : MonoBehaviour
 {
-    // Función para salir del juego
-    public void ExitGame()
+    // Check for no more slimes and load "Purificacion" scene
+    private void Update()
     {
-        // Si estamos en el editor de Unity, detener la ejecución
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit();  // Cerrar la aplicación en una compilación
-        #endif
+        if (GestorEnemigos.Instance != null && GestorEnemigos.Instance.EnemyCount == 0)
+        {
+            LoadPurificacion();
+        }
     }
 
-    // Función para cargar la escena "Bonito que flipas"
-    public void LoadBonitoQueFlipas()
-    {
-        SceneManager.LoadScene("Bonito que flipas");
-    }
-
-    // Función para cargar la escena "Purificacion"
-    public void LoadPurificacion()
+    // Function to load the "Purificacion" scene
+    private void LoadPurificacion()
     {
         SceneManager.LoadScene("Purificacion");
     }
