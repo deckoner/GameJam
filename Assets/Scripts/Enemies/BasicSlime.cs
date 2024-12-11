@@ -21,6 +21,7 @@ public class BasicSlime : MonoBehaviour, IEnemy
 
     [Header("Audio Settings")]
     [SerializeField] private AudioClip[] slimeAudioClips; // Array of possible audio clips
+    [SerializeField] private AudioClip[] fleeAudioClips; // Array of possible audio clips when fleeing
     private AudioSource audioSource; // AudioSource component
     [SerializeField] private float audioPlayRange = 10f; // Range at which the slime will play sounds
 
@@ -31,6 +32,8 @@ public class BasicSlime : MonoBehaviour, IEnemy
     private bool isPlayerInSight;
     private float nextAudioPlayTime; // Timer for when to play next audio clip
     private bool isDead = false; // To track if the slime is dead
+    private bool isFleeing = false; // To track if the slime is currently fleeing
+    private float fleeAudioDelay; // Delay for fleeing audio (random between 0.1 and 0.5 seconds)
     #endregion
 
     #region Unity Methods
@@ -204,6 +207,26 @@ public class BasicSlime : MonoBehaviour, IEnemy
                 nextAudioPlayTime = Time.time + randomInterval;
             }
         }
+
+        // Play a fleeing sound when the slime is running away
+        if (isFleeing && fleeAudioClips.Length > 0)
+        {
+            // Introduce a random delay between 0.1 and 0.5 seconds before playing fleeing sound
+            if (fleeAudioDelay <= 0)
+            {
+                int randomIndex = Random.Range(0, fleeAudioClips.Length);
+                audioSource.PlayOneShot(fleeAudioClips[randomIndex]);
+
+                // Reset the flee audio delay timer
+                fleeAudioDelay = Random.Range(0.1f, 0.5f);
+            }
+            else
+            {
+                fleeAudioDelay -= Time.deltaTime; // Countdown until we play the fleeing audio
+            }
+
+            isFleeing = false; // Reset fleeing flag after playing sound
+        }
     }
     #endregion
 
@@ -222,6 +245,7 @@ public class BasicSlime : MonoBehaviour, IEnemy
 
                 slime.agent.SetDestination(fleeTarget); // Set destination to flee position
                 slime.agent.speed = fleeSpeed; // Increase speed while fleeing
+                slime.isFleeing = true; // Set the fleeing flag to true
             }
         }
     }
