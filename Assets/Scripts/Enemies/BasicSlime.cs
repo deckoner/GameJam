@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 public class BasicSlime : MonoBehaviour, IEnemy
 {
     #region Fields
@@ -14,6 +14,11 @@ public class BasicSlime : MonoBehaviour, IEnemy
     [Header("Movement Settings")]
     [SerializeField] private float wanderSpeed = 1f;
     [SerializeField] private float approachSpeed = 2f;
+
+    [Header("Slime Effects")]
+    [SerializeField] private ParticleSystem deathParticlesPrefab; // Reference to the particle system prefab
+
+    private static List<BasicSlime> allEnemies = new List<BasicSlime>(); // List to store all enemies
 
     private Transform player;
     private NavMeshAgent agent;
@@ -37,6 +42,9 @@ public class BasicSlime : MonoBehaviour, IEnemy
             return;
         }
 
+        // Add this enemy to the list of all enemies
+        allEnemies.Add(this);
+
         // Notify GestorEnemigos about this slime's spawn
         if (GestorEnemigos.Instance != null)
         {
@@ -48,6 +56,9 @@ public class BasicSlime : MonoBehaviour, IEnemy
 
     private void OnDestroy()
     {
+        // Remove this enemy from the list when destroyed
+        allEnemies.Remove(this);
+
         // Notify GestorEnemigos about this slime's death
         if (GestorEnemigos.Instance != null)
         {
@@ -58,6 +69,15 @@ public class BasicSlime : MonoBehaviour, IEnemy
     private void Update()
     {
         ReactToPlayer();
+
+        // Check for "Q" key press and make enemies lose 1 health
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            foreach (var enemy in allEnemies)
+            {
+                enemy.TakeDamage(1); // Deal 1 damage to each enemy
+            }
+        }
     }
     #endregion
 
@@ -130,6 +150,14 @@ public class BasicSlime : MonoBehaviour, IEnemy
         if (Health <= 0)
         {
             Debug.Log("Slime defeated!");
+
+            // Instantiate the particle system prefab and play it at the slime's position
+            if (deathParticlesPrefab != null)
+            {
+                ParticleSystem particles = Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
+                particles.Play(); // Play the particle effect
+            }
+
             Destroy(gameObject); // Enemy dies
         }
     }
