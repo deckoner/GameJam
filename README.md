@@ -27,8 +27,10 @@ En este punto, incluso nosotros, los creadores, estamos atrapados en la búsqued
 ---
 
 ## 📦 **Cómo probarlo**
-1. Descarga el juego (pronto añadiremos el enlace por aquí o no).  
-2. Descomprime y abre el ejecutable, es portable que mola más.
+1. Descarga el juego (pronto añadiremos el enlace por aquí o no).
+   https://github.com/deckoner/The-happy-island-of-the-happy-slimes/releases/tag/Final
+   (lo metimos gente)
+3. Descomprime y abre el ejecutable, es portable que mola más.
 4. No te preocupes el aviso del antivirus tiene razón, vamos a minar con tu PC (Github esto broma, no me metas un ban otra vez porfa). 
 3. ¡Juega y comparte tus impresiones con nosotros o no! (si lo haces trae café de etiopia de nuestra finca sidamo)
 
