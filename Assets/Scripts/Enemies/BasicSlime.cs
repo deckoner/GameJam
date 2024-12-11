@@ -168,8 +168,8 @@ public class BasicSlime : MonoBehaviour, IEnemy
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         if (distanceToPlayer <= audioPlayRange)
         {
-            // Play random slime sound based on a chance every 4-6 seconds
-            if (Random.value < 0.5f) // 50% chance to play a sound
+            // Play random slime sound based on a 20% chance every 4-6 seconds
+            if (Random.value < 0.2f) // 20% chance to play a sound
             {
                 int randomIndex = Random.Range(0, slimeAudioClips.Length);
                 audioSource.clip = slimeAudioClips[randomIndex];
@@ -190,6 +190,7 @@ public class BasicSlime : MonoBehaviour, IEnemy
         currentAudioClips--; // Decrement counter
     }
 
+
     // This method is called when the slime flees
     public void Flee()
     {
@@ -202,7 +203,10 @@ public class BasicSlime : MonoBehaviour, IEnemy
             int randomIndex = Random.Range(0, fleeAudioClips.Length);
             audioSource.clip = fleeAudioClips[randomIndex];
 
-            audioSource.PlayOneShot(audioSource.clip);
+            // Reduce the volume by 50% for the flee sound
+            float fleeSoundVolume = audioSource.volume * 0.5f;
+
+            audioSource.PlayOneShot(audioSource.clip, fleeSoundVolume); // Adjusted volume
             currentAudioClips++; // Increment counter
         }
     }

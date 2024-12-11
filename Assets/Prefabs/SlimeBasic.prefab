@@ -104,7 +104,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5f62317d633ca884eb599580ac37c2bf, type: 3}
   audioPlayRange: 10
   audioClipMinDelay: 1
-  audioClipMaxDelay: 3
+  audioClipMaxDelay: 10
 --- !u!54 &8280147084660038571
 Rigidbody:
   m_ObjectHideFlags: 0
