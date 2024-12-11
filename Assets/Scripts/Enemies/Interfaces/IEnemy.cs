@@ -9,12 +9,6 @@ public interface IEnemy
     // Método para recibir daño
     void TakeDamage(int damage);
 
-    // Método para realizar alguna acción (por ejemplo, atacar)
-    void PerformAction();
-
-    // Método de ataque
-    void Attack();
-
     // Método de movimiento o deambule
     void Wander();
 }

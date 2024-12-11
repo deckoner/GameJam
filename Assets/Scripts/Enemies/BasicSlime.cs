@@ -200,7 +200,7 @@ public class BasicSlime : MonoBehaviour, IEnemy
 
         if (Health <= 0)
         {
-            Debug.Log("DEFEATADO");
+            Debug.Log("DEFEATED");
             Destroy(gameObject); // Destruye el slime cuando su salud llega a 0
         }
     }
