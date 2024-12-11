@@ -6,6 +6,9 @@ public class GestorEnemigos : MonoBehaviour
     public static GestorEnemigos Instance { get; private set; }
 
     [SerializeField] private TextMeshProUGUI enemyCountText; // Reference to the TextMeshPro UI element
+    [SerializeField] private ScenasMovimiento SceneManager;
+    [SerializeField] private GameObject Hud;
+
     private int enemyCount = 0;
 
     public int EnemyCount // Public property to access enemy count
@@ -46,6 +49,12 @@ public class GestorEnemigos : MonoBehaviour
     {
         enemyCount = Mathf.Max(0, enemyCount - 1); // Prevent negative counts
         UpdateEnemyCountText();
+
+        if (enemyCount <= 0)
+        {
+            Hud.SetActive(false);
+            SceneManager.LoadPurificacion();
+        }
     }
 
     /// <summary>

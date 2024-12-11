@@ -1324,6 +1324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -37.261295
@@ -1748,6 +1752,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -110.83473
@@ -1898,6 +1906,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6081,6 +6093,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -101.46548
@@ -6330,6 +6346,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7571,6 +7591,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7456400094900589534, guid: 52886f38fcb05844a9bd6e6d7786cead, type: 3}
+--- !u!1 &560604960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4689087747570846371, guid: ff8313f347df645409faf488f6a1fcd2, type: 3}
+  m_PrefabInstance: {fileID: 393673279}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &561690102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7582,6 +7607,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9230,6 +9259,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -75.78782
@@ -9500,6 +9533,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 661126d114eca16408189ea25ef024b8, type: 3}
+--- !u!114 &676117133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1248731822300896316, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+  m_PrefabInstance: {fileID: 2083036350}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f594b6f9587f0c489d3c113c3da0e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &678482330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10316,6 +10360,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11943,6 +11991,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -99.16082
@@ -12187,6 +12239,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12507,6 +12563,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12921,6 +12981,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13534,6 +13598,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14922,6 +14990,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16604,6 +16676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -109.57721
@@ -16892,6 +16968,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17242,6 +17322,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20190,6 +20274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.66
@@ -20246,6 +20334,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21619,6 +21711,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23023,6 +23119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCountText: {fileID: 1350893823}
+  SceneManager: {fileID: 676117133}
+  Hud: {fileID: 560604960}
 --- !u!4 &1482085583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 659847d6cccad9943b5b4094f28abf12, type: 3}
@@ -23039,6 +23137,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (47)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25012,6 +25114,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -42.317226
@@ -25885,6 +25991,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -116.06823
@@ -26610,6 +26720,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -29.790977
@@ -26884,6 +26998,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28059,6 +28177,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30113,6 +30235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBasic (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -103.70815
@@ -30169,6 +30295,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30962,6 +31092,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d3dde3be1df6314c89f86b3a6fd1fb0, type: 3}
+--- !u!1001 &2083036350
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3872674461266593314, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 934.4903
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872674461266593314, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 572.79755
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872674461266593314, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.411255
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872674461266593314, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872674461266593314, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872674461266593314, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872674461266593314, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872674461266593314, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872674461266593314, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872674461266593314, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733114208883095249, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
+      propertyPath: m_Name
+      value: SceneManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c883e03814de39e4eb0f4bd97ec39bb6, type: 3}
 --- !u!1001 &2083517258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30973,6 +31160,10 @@ PrefabInstance:
     - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_Name
       value: SlimeBasic (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580380936529065573, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2208299535332895967, guid: 5cf1919d39b64e249a8483c6e2c51c8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32135,3 +32326,4 @@ SceneRoots:
   - {fileID: 1851236121}
   - {fileID: 832028354}
   - {fileID: 1650347136}
+  - {fileID: 2083036350}
