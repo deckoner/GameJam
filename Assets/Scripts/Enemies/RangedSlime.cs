@@ -1,35 +1,39 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
-using DG.Tweening;
 
-public class RangedSlime : MonoBehaviour, IEnemy
+[RequireComponent(typeof(NavMeshAgent))]
+public class RangedSlime : MonoBehaviour
 {
     #region Fields
     public int Health { get; set; } = 1;
-    public int sightRange = 20;
-    public int sightAngle = 45;
-    public float wanderSpeed = 1f;
-    public float approachSpeed = 2f;
-    public float playerTrackingRange = 5f;
 
-    public float attackRange = 10f;
-    public float shootCooldown = 2f;
-    private float lastShootTime;
+    [Header("Sight Settings")]
+    [SerializeField] private int sightRange = 20;
+    [SerializeField] private int sightAngle = 45;
 
-    private Transform player;
-    private NavMeshAgent agent;
-    private Vector3 lastKnownPlayerPosition;
-    private bool isPlayerInSight = false;
+    [Header("Movement Settings")]
+    [SerializeField] private float wanderSpeed = 1f;
+    [SerializeField] private float approachSpeed = 2f;
+    [SerializeField] private float playerTrackingRange = 5f;
 
-    public GameObject projectilePrefab;
-    public float projectileSpeed = 10f;
-
-    private bool isJumping = false; // To control jump animation
-    private float groundY; // Store the ground level for resetting height
+    [Header("Combat Settings")]
+    [SerializeField] private float attackRange = 10f;
+    [SerializeField] private float shootCooldown = 2f;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float projectileSpeed = 10f;
 
     [Header("Jump Settings")]
     [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float jumpDuration = 0.5f;
+
+    private Transform player;
+    private NavMeshAgent agent;
+    private float lastShootTime;
+    private Vector3 lastKnownPlayerPosition;
+    private bool isPlayerInSight;
+    private bool isJumping;
+    private float groundY;
     #endregion
 
     #region Unity Methods
@@ -49,31 +53,38 @@ public class RangedSlime : MonoBehaviour, IEnemy
             return;
         }
 
-        groundY = transform.position.y; // Store the ground level
+        groundY = transform.position.y;
         SetNewRandomWanderDestination();
     }
 
     private void Update()
     {
+        if (player == null) return;
+
         ReactToPlayer();
 
         if (isPlayerInSight && Time.time - lastShootTime > shootCooldown)
         {
             ShootAtPlayer();
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            MakeAllEnemiesLoseHealth();
-        }
+    private void OnDrawGizmosSelected()
+    {
+        // Sight range and angle visualization
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+
+        Vector3 forward = transform.forward * sightRange;
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, sightAngle / 2, 0) * forward);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, -sightAngle / 2, 0) * forward);
     }
     #endregion
 
     #region Movement and Jumping
     private void ReactToPlayer()
     {
-        if (player == null) return;
-
         if (IsPlayerInSight(player.position))
         {
             isPlayerInSight = true;
@@ -93,15 +104,17 @@ public class RangedSlime : MonoBehaviour, IEnemy
         {
             SetNewRandomWanderDestination();
         }
+
         JumpTowardsTarget(agent.destination, wanderSpeed);
     }
 
     private void SetNewRandomWanderDestination()
     {
-        Vector3 randomDirection = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
-        Vector3 newWanderTarget = transform.position + randomDirection;
+        Vector3 randomDirection = Random.insideUnitSphere * 10f;
+        randomDirection += transform.position;
+        randomDirection.y = groundY;
 
-        if (NavMesh.SamplePosition(newWanderTarget, out NavMeshHit hit, 2f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, 2f, NavMesh.AllAreas))
         {
             agent.SetDestination(hit.position);
         }
@@ -113,23 +126,30 @@ public class RangedSlime : MonoBehaviour, IEnemy
 
         isJumping = true;
 
+        // Calculate direction and horizontal distance
         Vector3 direction = (targetPosition - transform.position).normalized;
-        Vector3 jumpTarget = new Vector3(
-            transform.position.x + direction.x * speed * jumpDuration,
-            groundY + jumpHeight,
-            transform.position.z + direction.z * speed * jumpDuration
+        float horizontalDistance = Vector3.Distance(
+            new Vector3(targetPosition.x, 0, targetPosition.z),
+            new Vector3(transform.position.x, 0, transform.position.z)
         );
 
-        transform.DOMove(jumpTarget, jumpDuration)
-            .SetEase(Ease.OutQuad)
-            .OnComplete(() =>
-            {
-                Vector3 landPosition = new Vector3(jumpTarget.x, groundY, jumpTarget.z);
-                transform.DOMove(landPosition, jumpDuration)
-                    .SetEase(Ease.InQuad)
-                    .OnComplete(() => isJumping = false);
-            });
+        // Calculate mid-point for the arc
+        Vector3 midPoint = (transform.position + targetPosition) / 2;
+        midPoint.y += jumpHeight;
+
+        // Use DOTween to create a smooth parabolic path
+        Vector3[] path = new Vector3[]
+        {
+        transform.position,
+        midPoint,
+        new Vector3(targetPosition.x, groundY, targetPosition.z)
+        };
+
+        transform.DOPath(path, jumpDuration, PathType.CatmullRom, PathMode.Full3D)
+            .SetEase(Ease.Linear)
+            .OnComplete(() => isJumping = false);
     }
+
     #endregion
 
     #region Combat
@@ -140,10 +160,9 @@ public class RangedSlime : MonoBehaviour, IEnemy
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         Physics.IgnoreCollision(projectile.GetComponent<Collider>(), GetComponent<Collider>());
 
-        Vector3 directionToPlayer = (player.position - transform.position).normalized;
-        Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        if (rb != null)
+        if (projectile.TryGetComponent(out Rigidbody rb))
         {
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
             rb.velocity = directionToPlayer * projectileSpeed;
         }
 
@@ -153,8 +172,9 @@ public class RangedSlime : MonoBehaviour, IEnemy
     private bool IsPlayerInSight(Vector3 playerPosition)
     {
         Vector3 directionToPlayer = playerPosition - transform.position;
+        float distance = directionToPlayer.magnitude;
 
-        if (directionToPlayer.magnitude < sightRange)
+        if (distance < sightRange)
         {
             float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
             return angleToPlayer < sightAngle;
@@ -171,19 +191,6 @@ public class RangedSlime : MonoBehaviour, IEnemy
         if (Health <= 0)
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void MakeAllEnemiesLoseHealth()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
-        {
-            IEnemy enemyScript = enemy.GetComponent<IEnemy>();
-            if (enemyScript != null)
-            {
-                enemyScript.TakeDamage(1);
-            }
         }
     }
     #endregion
