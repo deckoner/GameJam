@@ -1,14 +1,16 @@
+using TMPro;
 using UnityEngine;
 
 public class GestorEnemigos : MonoBehaviour
 {
     public static GestorEnemigos Instance { get; private set; }
 
+    [SerializeField] private TextMeshProUGUI enemyCountText; // Reference to the TextMeshPro UI element
     private int enemyCount = 0;
 
     private void Awake()
     {
-        // Singleton pattern to ensure only one instance exists
+        // Singleton pattern
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -18,29 +20,41 @@ public class GestorEnemigos : MonoBehaviour
         DontDestroyOnLoad(gameObject); // Optional: persists between scenes
     }
 
+    private void Start()
+    {
+        UpdateEnemyCountText();
+    }
+
     /// <summary>
-    /// Adds an enemy to the counter.
+    /// Adds an enemy to the counter and updates the UI.
     /// </summary>
     public void AddEnemy()
     {
         enemyCount++;
-        Debug.Log($"Enemy added. Current count: {enemyCount}");
+        UpdateEnemyCountText();
     }
 
     /// <summary>
-    /// Removes an enemy from the counter.
+    /// Removes an enemy from the counter and updates the UI.
     /// </summary>
     public void RemoveEnemy()
     {
         enemyCount = Mathf.Max(0, enemyCount - 1); // Prevent negative counts
-        Debug.Log($"Enemy removed. Current count: {enemyCount}");
+        UpdateEnemyCountText();
     }
 
     /// <summary>
-    /// Gets the current number of active enemies.
+    /// Updates the TextMeshPro UI element with the current enemy count.
     /// </summary>
-    public int GetEnemyCount()
+    private void UpdateEnemyCountText()
     {
-        return enemyCount;
+        if (enemyCountText != null)
+        {
+            enemyCountText.text = $"{enemyCount}";
+        }
+        else
+        {
+            Debug.LogWarning("Enemy count TextMeshPro reference is missing!");
+        }
     }
 }

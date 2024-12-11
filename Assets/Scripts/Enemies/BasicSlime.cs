@@ -6,6 +6,7 @@ public class BasicSlime : MonoBehaviour, IEnemy
 {
     #region Fields
     public int Health { get; set; } = 1; // Slime's health
+
     [Header("Sight Settings")]
     [SerializeField] private int sightRange = 20; // Range in which the slime can see the player
     [SerializeField] private int sightAngle = 45; // Field of view angle
@@ -36,7 +37,22 @@ public class BasicSlime : MonoBehaviour, IEnemy
             return;
         }
 
+        // Notify GestorEnemigos about this slime's spawn
+        if (GestorEnemigos.Instance != null)
+        {
+            GestorEnemigos.Instance.AddEnemy();
+        }
+
         SetNewRandomWanderDestination();
+    }
+
+    private void OnDestroy()
+    {
+        // Notify GestorEnemigos about this slime's death
+        if (GestorEnemigos.Instance != null)
+        {
+            GestorEnemigos.Instance.RemoveEnemy();
+        }
     }
 
     private void Update()
@@ -114,17 +130,7 @@ public class BasicSlime : MonoBehaviour, IEnemy
         if (Health <= 0)
         {
             Debug.Log("Slime defeated!");
-            Destroy(gameObject);
-        }
-    }
-
-    private void MakeAllEnemiesLoseHealth()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
-        {
-            IEnemy enemyScript = enemy.GetComponent<IEnemy>();
-            enemyScript?.TakeDamage(1);
+            Destroy(gameObject); // Enemy dies
         }
     }
     #endregion
