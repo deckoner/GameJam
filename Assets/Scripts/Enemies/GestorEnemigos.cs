@@ -8,6 +8,11 @@ public class GestorEnemigos : MonoBehaviour
     [SerializeField] private TextMeshProUGUI enemyCountText; // Reference to the TextMeshPro UI element
     private int enemyCount = 0;
 
+    public int EnemyCount // Public property to access enemy count
+    {
+        get { return enemyCount; }
+    }
+
     private void Awake()
     {
         // Singleton pattern

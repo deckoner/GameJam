@@ -21,9 +21,9 @@ public class BasicSlime : MonoBehaviour, IEnemy
     [Header("Audio Settings")]
     [SerializeField] private AudioClip[] slimeAudioClips; // Array of random audio clips
     [SerializeField] private AudioClip[] fleeAudioClips; // Flee audio clips when slime runs away
-    [SerializeField] private float audioPlayRange = 20f; // Range in which the audio will be played
+    [SerializeField] private float audioPlayRange = 10f; // Range in which the audio will be played
     [SerializeField] private float audioClipMinDelay = 1f; // Minimum time between playing audio clips
-    [SerializeField] private float audioClipMaxDelay = 3f; // Maximum time between playing audio clips
+    [SerializeField] private float audioClipMaxDelay = 8f; // Maximum time between playing audio clips
 
     private static List<BasicSlime> allEnemies = new List<BasicSlime>(); // List to store all enemies
 
