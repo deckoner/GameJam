@@ -22,7 +22,7 @@ public class Purificacion : MonoBehaviour
             canvasTransform = canvasPanfarria.GetComponent<RectTransform>();
             canvasPanfarria.SetActive(false); // Asegura que el canvas esté inicialmente invisible
         }
-        Invoke("EjecutarExplosion", 1.5f); // Llama a la función EjecutarExplosion después de 1.5 segundos
+        Invoke("EjecutarExplosion", 2f); // Llama a la función EjecutarExplosion después de 1.5 segundos
     }
 
     private void EjecutarExplosion()
@@ -40,7 +40,7 @@ public class Purificacion : MonoBehaviour
         Destroy(planeta);
 
         // Llama a la función Panfarria después de 0.8 segundos
-        Invoke("Panfarria", 7.7f);
+        Invoke("Panfarria", 5f);
     }
 
     private void Panfarria()
