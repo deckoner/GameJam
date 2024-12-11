@@ -1,49 +1,34 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class ProjectileBehavior : MonoBehaviour
 {
-    #region Fields
-    public float lifeTime = 5f; // Tiempo de vida del proyectil antes de ser destruido
-    public int damage = 1; // Daño que causará el proyectil
-    private Rigidbody rb; // Rigidbody del proyectil para moverlo
-    #endregion
+    [Header("Projectile Lifetime")]
+    [SerializeField] private float lifetime = 5f; // Time in seconds before self-destruction
 
-    #region Unity Methods
-    void Start()
+    private void Start()
     {
-        // Obtén el Rigidbody para poder mover la bala
-        rb = GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            Debug.LogError("El proyectil debe tener un Rigidbody para moverse.");
-        }
-
-        // Destruye el proyectil después de un tiempo para evitar que se quede en la escena indefinidamente
-        Destroy(gameObject, lifeTime);
+        Destroy(gameObject, lifetime); // Self-destruct after a set time
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        // Verifica si el proyectil ha chocado con un enemigo
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            // Obtén el componente IEnemy del enemigo (como en el caso del slime)
-            IEnemy enemy = collision.gameObject.GetComponent<IEnemy>();
-            if (enemy != null)
-            {
-                // Llama a la función TakeDamage del enemigo, aplicando el daño
-                enemy.TakeDamage(damage);
-            }
+        Debug.Log($"Projectile collided with: {collision.gameObject.name}");
 
-            // Destruye la bala al impactar
-            Destroy(gameObject);
-        }
-
-        // Destruye la bala si colisiona con cualquier otro objeto
-        else if (collision.gameObject.CompareTag("Environment"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Debug.Log("Projectile hit the Player!");
+            Destroy(gameObject); // Destroy projectile
         }
     }
-    #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"Projectile triggered by: {other.gameObject.name}");
+
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Projectile hit the Player!");
+            Destroy(gameObject); // Destroy projectile
+        }
+    }
 }
